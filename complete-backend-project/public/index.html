@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test API</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Express API Test</h1>
+        <button onclick="makeGet()">GET Request</button>
+        <button onclick="makePost()">POST Request</button>
+        <p id="responseText"></p>
+    </div>
+
+    <script>
+        async function makeGet() {
+            const res = await fetch('/api/get');
+            const text = await res.text();
+            document.getElementById('responseText').textContent = text;
+        }
+
+        async function makePost() {
+            const res = await fetch('/api/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+            const text = await res.text();
+            document.getElementById('responseText').textContent = text;
+        }
+    </script>
+</body>
+
+</html>
